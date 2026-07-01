@@ -31,6 +31,8 @@ class RendererTest(unittest.TestCase):
             self.assertIn("uri.amap.com", html)
             self.assertIn("资料来源", html)
             self.assertIn("Flight booking screenshot", html)
+            self.assertIn("Trip workspace", html)
+            self.assertIn("开始行程", html)
 
     def test_validation_requires_stop_name(self) -> None:
         data = {

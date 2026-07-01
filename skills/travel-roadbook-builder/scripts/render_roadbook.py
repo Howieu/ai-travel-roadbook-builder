@@ -38,6 +38,28 @@ def map_links(stop: dict) -> list[tuple[str, str]]:
     ]
 
 
+def all_stops(data: dict) -> list[dict]:
+    stops: list[dict] = []
+    for day in data.get("days", []):
+        if isinstance(day, dict):
+            stops.extend(stop for stop in day.get("stops", []) if isinstance(stop, dict))
+    return stops
+
+
+def first_day_id(data: dict) -> str:
+    days = data.get("days", [])
+    if not days:
+        return "itinerary"
+    day = days[0]
+    return slugify(text(day.get("date")) + "-" + text(day.get("title"))) if isinstance(day, dict) else "itinerary"
+
+
+def trip_dates(trip: dict) -> str:
+    start = text(trip.get("startDate"))
+    end = text(trip.get("endDate"))
+    return f"{start} - {end}" if start or end else "Flexible dates"
+
+
 def validate(data: dict) -> list[str]:
     errors: list[str] = []
     trip = data.get("trip")
@@ -124,6 +146,48 @@ def render_sources(data: dict) -> str:
     return f'<section class="info-section source-section"><h2>资料来源</h2><div class="info-grid">{"".join(cards)}</div></section>'
 
 
+def render_hero_actions(data: dict) -> str:
+    stops = all_stops(data)
+    start_link = f'<a class="button primary" href="#{esc(first_day_id(data))}">开始行程</a>'
+    if not stops:
+        return f'<div class="hero-actions">{start_link}</div>'
+    maps = map_links(stops[0])
+    map_link = f'<a class="button ghost" href="{esc(maps[1][1])}" target="_blank" rel="noopener">打开第一站地图</a>'
+    return f'<div class="hero-actions">{start_link}{map_link}</div>'
+
+
+def render_metrics(data: dict) -> str:
+    trip = data["trip"]
+    stops = all_stops(data)
+    sources = source_records(data)
+    metrics = [
+        (esc(trip.get("destination"), "目的地"), "目的地"),
+        (f"{len(data.get('days', []))} days", "行程天数"),
+        (f"{len(stops)} stops", "路线节点"),
+        (f"{len(sources)} sources", "资料证据"),
+    ]
+    return "".join(f"<div><b>{value}</b><span>{label}</span></div>" for value, label in metrics)
+
+
+def render_product_intro(data: dict) -> str:
+    trip = data["trip"]
+    warnings_count = len(data.get("warnings", []))
+    return f"""
+    <section class="product-intro" id="overview">
+      <div>
+        <p class="eyebrow">Trip workspace</p>
+        <h2>今天只看下一步，不翻长文档</h2>
+        <p>这份路书把 {esc(trip.get("destination"))} 的攻略、预订和风险提醒压成一张执行面板：下一站、地图、时间缓冲和来源证据都在同一页。</p>
+      </div>
+      <div class="status-strip">
+        <span>{len(data.get("lodging", []))} 住宿</span>
+        <span>{len(data.get("transport", []))} 交通</span>
+        <span>{warnings_count} 提醒</span>
+      </div>
+    </section>
+    """
+
+
 def render_stop(stop: dict) -> str:
     links = "".join(
         f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(label)}</a>'
@@ -141,6 +205,9 @@ def render_stop(stop: dict) -> str:
     confidence = esc(stop.get("confidence"))
     duration = stop.get("durationMinutes")
     duration_html = f'<span>{int(duration)} min</span>' if isinstance(duration, int) else ""
+    deadline_html = f'\n        <p class="deadline">最晚/提醒：{deadline}</p>' if deadline else ""
+    fallback_html = f'\n        <p class="fallback">备选：{fallback}</p>' if fallback else ""
+    source_html = f'\n        <p class="source">来源：{source} · 置信度：{confidence}</p>' if source or confidence else ""
     must = '<span class="must">必去</span>' if stop.get("mustGo") else ""
     return f"""
     <article class="stop">
@@ -150,14 +217,11 @@ def render_stop(stop: dict) -> str:
           <h3>{esc(stop.get("name"))}</h3>
           <div class="badges">{must}<span>{esc(stop.get("type"), "stop")}</span>{duration_html}</div>
         </div>
-        <p>{esc(stop.get("description"))}</p>
-        {f'<p class="deadline">最晚/提醒：{deadline}</p>' if deadline else ""}
-        {f'<p class="fallback">备选：{fallback}</p>' if fallback else ""}
-        <div class="stop-links">{links}{extra_links}</div>
-        {(f'<p class="source">来源：{source} · 置信度：{confidence}</p>' if source or confidence else "")}
+        <p>{esc(stop.get("description"))}</p>{deadline_html}{fallback_html}
+        <div class="stop-links">{links}{extra_links}</div>{source_html}
       </div>
     </article>
-    """
+    """.strip()
 
 
 def render(data: dict, css_path: str) -> str:
@@ -181,6 +245,7 @@ def render(data: dict, css_path: str) -> str:
           <div class="timeline">{stops}</div>
         </section>
         """
+    days_html = days_html.strip()
     warnings = "".join(f"<li>{esc(item)}</li>" for item in data.get("warnings", []))
     warning_section = f'<section class="warnings"><h2>出发前确认</h2><ul>{warnings}</ul></section>' if warnings else ""
     return f"""<!doctype html>
@@ -192,29 +257,31 @@ def render(data: dict, css_path: str) -> str:
   <link rel="stylesheet" href="{esc(css_path)}">
 </head>
 <body>
-  <nav class="topnav"><a href="../index.html">Builder</a>{day_nav}</nav>
-  <header class="hero">
-    <div>
+  <nav class="topnav product-nav">
+    <a class="brand" href="../index.html">Roadbook</a>
+    <div class="nav-links"><a href="#overview">总览</a>{day_nav}<a href="#sources">来源</a></div>
+  </nav>
+  <header class="hero product-hero">
+    <div class="hero-copy">
       <p class="eyebrow">AI Travel Roadbook</p>
       <h1>{esc(trip.get("title"))}</h1>
-      <p>{esc(trip.get("destination"))} · {esc(trip.get("startDate"))} - {esc(trip.get("endDate"))} · {esc(trip.get("pace"), "standard")}</p>
+      <p class="hero-subtitle">{esc(trip.get("destination"))} · {esc(trip_dates(trip))} · {esc(trip.get("pace"), "standard")}</p>
       <p>{esc(interests)}</p>
+      {render_hero_actions(data)}
     </div>
+    <div class="hero-metrics">{render_metrics(data)}</div>
   </header>
-  <main class="layout">
+  <main class="layout product-layout">
     <aside class="side-panel">
-      <div class="summary">
-        <div><b>{esc(trip.get("destination"))}</b><span>目的地</span></div>
-        <div><b>{len(data.get("days", []))} days</b><span>行程天数</span></div>
-        <div><b>{esc(trip.get("pace"), "standard")}</b><span>节奏</span></div>
-      </div>
+      <div class="summary command-center">{render_metrics(data)}</div>
       {render_list(data.get("lodging", []), "lodging")}
       {render_list(data.get("transport", []), "transport")}
-      {render_sources(data)}
+      <div id="sources">{render_sources(data)}</div>
       {warning_section}
     </aside>
-    <section class="days">{days_html}</section>
+    <section class="days">{render_product_intro(data)}{days_html}</section>
   </main>
+  <footer class="site-footer">Generated as a static product roadbook. Verify live schedules before departure.</footer>
 </body>
 </html>
 """

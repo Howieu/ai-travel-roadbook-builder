@@ -7,36 +7,48 @@
   <link rel="stylesheet" href="../assets/roadbook.css">
 </head>
 <body>
-  <nav class="topnav"><a href="../index.html">Builder</a><a href="#2026-05-20-arrival-seine-evening">2026-05-20</a><a href="#2026-05-21-louvre-le-marais">2026-05-21</a><a href="#2026-05-22-montmartre-departure-buffer">2026-05-22</a></nav>
-  <header class="hero">
-    <div>
+  <nav class="topnav product-nav">
+    <a class="brand" href="../index.html">Roadbook</a>
+    <div class="nav-links"><a href="#overview">总览</a><a href="#2026-05-20-arrival-seine-evening">2026-05-20</a><a href="#2026-05-21-louvre-le-marais">2026-05-21</a><a href="#2026-05-22-montmartre-departure-buffer">2026-05-22</a><a href="#sources">来源</a></div>
+  </nav>
+  <header class="hero product-hero">
+    <div class="hero-copy">
       <p class="eyebrow">AI Travel Roadbook</p>
       <h1>Paris 3-Day Roadbook</h1>
-      <p>Paris · 2026-05-20 - 2026-05-22 · standard</p>
+      <p class="hero-subtitle">Paris · 2026-05-20 - 2026-05-22 · standard</p>
       <p>museum, food, city walk, photo</p>
+      <div class="hero-actions"><a class="button primary" href="#2026-05-20-arrival-seine-evening">开始行程</a><a class="button ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Saint-Germain+Paris" target="_blank" rel="noopener">打开第一站地图</a></div>
     </div>
+    <div class="hero-metrics"><div><b>Paris</b><span>目的地</span></div><div><b>3 days</b><span>行程天数</span></div><div><b>8 stops</b><span>路线节点</span></div><div><b>6 sources</b><span>资料证据</span></div></div>
   </header>
-  <main class="layout">
+  <main class="layout product-layout">
     <aside class="side-panel">
-      <div class="summary">
-        <div><b>Paris</b><span>目的地</span></div>
-        <div><b>3 days</b><span>行程天数</span></div>
-        <div><b>standard</b><span>节奏</span></div>
-      </div>
+      <div class="summary command-center"><div><b>Paris</b><span>目的地</span></div><div><b>3 days</b><span>行程天数</span></div><div><b>8 stops</b><span>路线节点</span></div><div><b>6 sources</b><span>资料证据</span></div></div>
       <section class="info-section"><h2>住宿</h2><div class="info-grid"><article class="info-card"><h3>Hotel Saint-Germain Example</h3><p class="muted">2026-05-20 / 2026-05-22</p><p>Example Street, Paris</p><p>User note says luggage storage is available; confirm before arrival.</p></article></div></section>
       <section class="info-section"><h2>交通</h2><div class="info-grid"><article class="info-card"><h3>flight</h3><p class="muted">Manchester -&gt; Paris CDG</p><p>2026-05-20 08:00 / 2026-05-20 10:30</p><p>Keep arrival day light and reserve airport-to-city buffer.</p></article><article class="info-card"><h3>train</h3><p class="muted">Paris Gare du Nord -&gt; London St Pancras</p><p>2026-05-22 18:10 / 2026-05-22 19:40</p><p>Reserve station and security buffer before departure.</p></article></div></section>
-      <section class="info-section source-section"><h2>资料来源</h2><div class="info-grid"><article class="source-card"><h3>User pasted Paris guide notes</h3><p class="muted">guide-001 · user-paste · read · medium</p><p>User notes recommend a light arrival walk, Seine cruise, Louvre, Le Marais, Montmartre, and departure buffer.</p></article><article class="source-card"><h3>Louvre official website</h3><p class="muted">web-001 · web · read · high</p><p>Official website link kept for ticket and opening-hour confirmation before departure.</p><a href="https://www.louvre.fr/" target="_blank" rel="noopener">打开来源</a></article><article class="source-card"><h3>https://www.xiaohongshu.com/explore/example</h3><p class="muted">xhs-001 · xhs · unreadable · low</p><p>Xiaohongshu direct reading requires Agent Reach plus an active Xiaohongshu backend. Install OpenCLI with `agent-reach install --channels opencli`, log into Xiaohongshu in Chrome, rerun doctor, or paste note text/screenshots.</p><a href="https://www.xiaohongshu.com/explore/example" target="_blank" rel="noopener">打开来源</a></article><article class="source-card"><h3>Hotel booking screenshot</h3><p class="muted">shot-hotel-001 · user-screenshot · read · high</p><p>Hotel name, address, check-in and check-out dates captured. Sensitive booking details omitted.</p></article><article class="source-card"><h3>Flight booking screenshot</h3><p class="muted">shot-flight-001 · user-screenshot · read · high</p><p>Arrival flight timing captured. Passenger details and booking reference omitted.</p></article><article class="source-card"><h3>Train booking screenshot</h3><p class="muted">shot-train-001 · user-screenshot · read · high</p><p>Departure train timing captured. Passenger details and booking reference omitted.</p></article></div></section>
+      <div id="sources"><section class="info-section source-section"><h2>资料来源</h2><div class="info-grid"><article class="source-card"><h3>User pasted Paris guide notes</h3><p class="muted">guide-001 · user-paste · read · medium</p><p>User notes recommend a light arrival walk, Seine cruise, Louvre, Le Marais, Montmartre, and departure buffer.</p></article><article class="source-card"><h3>Louvre official website</h3><p class="muted">web-001 · web · read · high</p><p>Official website link kept for ticket and opening-hour confirmation before departure.</p><a href="https://www.louvre.fr/" target="_blank" rel="noopener">打开来源</a></article><article class="source-card"><h3>https://www.xiaohongshu.com/explore/example</h3><p class="muted">xhs-001 · xhs · unreadable · low</p><p>Xiaohongshu direct reading requires Agent Reach plus an active Xiaohongshu backend. Install OpenCLI with `agent-reach install --channels opencli`, log into Xiaohongshu in Chrome, rerun doctor, or paste note text/screenshots.</p><a href="https://www.xiaohongshu.com/explore/example" target="_blank" rel="noopener">打开来源</a></article><article class="source-card"><h3>Hotel booking screenshot</h3><p class="muted">shot-hotel-001 · user-screenshot · read · high</p><p>Hotel name, address, check-in and check-out dates captured. Sensitive booking details omitted.</p></article><article class="source-card"><h3>Flight booking screenshot</h3><p class="muted">shot-flight-001 · user-screenshot · read · high</p><p>Arrival flight timing captured. Passenger details and booking reference omitted.</p></article><article class="source-card"><h3>Train booking screenshot</h3><p class="muted">shot-train-001 · user-screenshot · read · high</p><p>Departure train timing captured. Passenger details and booking reference omitted.</p></article></div></section></div>
       <section class="warnings"><h2>出发前确认</h2><ul><li>Opening hours and transport schedules are not live-verified.</li><li>Confirm Louvre ticket availability before finalizing day 2.</li><li>Departure day is intentionally lighter to reduce train risk.</li></ul></section>
     </aside>
     <section class="days">
-        <section class="day-card" id="2026-05-20-arrival-seine-evening">
+    <section class="product-intro" id="overview">
+      <div>
+        <p class="eyebrow">Trip workspace</p>
+        <h2>今天只看下一步，不翻长文档</h2>
+        <p>这份路书把 Paris 的攻略、预订和风险提醒压成一张执行面板：下一站、地图、时间缓冲和来源证据都在同一页。</p>
+      </div>
+      <div class="status-strip">
+        <span>1 住宿</span>
+        <span>2 交通</span>
+        <span>3 提醒</span>
+      </div>
+    </section>
+    <section class="day-card" id="2026-05-20-arrival-seine-evening">
           <div class="day-head">
             <p>2026-05-20</p>
             <h2>Arrival + Seine Evening</h2>
             <span>Keep arrival day light, store luggage, then do a central walk and evening cruise.</span>
           </div>
-          <div class="timeline">
-    <article class="stop">
+          <div class="timeline"><article class="stop">
       <div class="time">12:30</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -44,14 +56,10 @@
           <div class="badges"><span>lodging</span><span>30 min</span></div>
         </div>
         <p>Drop luggage before check-in if available.</p>
-        
-        
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Hotel+Saint-Germain+Paris" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Saint-Germain+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Hotel+Saint-Germain+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：user pasted hotel details · 置信度：medium</p>
       </div>
-    </article>
-    
-    <article class="stop">
+    </article><article class="stop">
       <div class="time">14:00</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -59,14 +67,10 @@
           <div class="badges"><span>city walk</span><span>60 min</span></div>
         </div>
         <p>Light walk after arrival; good route into central Paris.</p>
-        
-        
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Tuileries+Garden" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Tuileries+Garden+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Tuileries+Garden+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    
-    <article class="stop">
+    </article><article class="stop">
       <div class="time">17:30</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -79,8 +83,7 @@
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Seine+Cruise+Paris" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Seine+River+Cruise+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Seine+River+Cruise+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    </div>
+    </article></div>
         </section>
         
         <section class="day-card" id="2026-05-21-louvre-le-marais">
@@ -89,8 +92,7 @@
             <h2>Louvre + Le Marais</h2>
             <span>Museum-first day with a lighter cafe and shopping afternoon.</span>
           </div>
-          <div class="timeline">
-    <article class="stop">
+          <div class="timeline"><article class="stop">
       <div class="time">09:30</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -103,9 +105,7 @@
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Louvre+Museum" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Louvre+Museum+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Louvre+Museum+Paris" target="_blank" rel="noopener">Apple Maps</a><a href="https://www.louvre.fr/" target="_blank" rel="noopener">Official site</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    
-    <article class="stop">
+    </article><article class="stop">
       <div class="time">14:30</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -113,13 +113,10 @@
           <div class="badges"><span>food / shopping</span><span>150 min</span></div>
         </div>
         <p>Cafe break, boutiques, and a relaxed afternoon walk.</p>
-        
-        
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Le+Marais+Paris" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Marais+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Le+Marais+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    </div>
+    </article></div>
         </section>
         
         <section class="day-card" id="2026-05-22-montmartre-departure-buffer">
@@ -128,8 +125,7 @@
             <h2>Montmartre + Departure Buffer</h2>
             <span>Short morning route, then keep enough station buffer for Eurostar.</span>
           </div>
-          <div class="timeline">
-    <article class="stop">
+          <div class="timeline"><article class="stop">
       <div class="time">09:30</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -137,14 +133,10 @@
           <div class="badges"><span>photo / viewpoint</span><span>75 min</span></div>
         </div>
         <p>Go in the morning for lighter crowds and city views.</p>
-        
-        
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Sacre-Coeur+Paris" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Sacre-Coeur+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Sacre-Coeur+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    
-    <article class="stop">
+    </article><article class="stop">
       <div class="time">11:00</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -152,14 +144,10 @@
           <div class="badges"><span class="must">必去</span><span>city walk</span><span>120 min</span></div>
         </div>
         <p>Short neighborhood walk and lunch before collecting luggage.</p>
-        
-        
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Montmartre+Paris" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Montmartre+Paris" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Montmartre+Paris" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：pasted guide · 置信度：medium</p>
       </div>
-    </article>
-    
-    <article class="stop">
+    </article><article class="stop">
       <div class="time">15:45</div>
       <div class="stop-body">
         <div class="stop-title">
@@ -172,10 +160,9 @@
         <div class="stop-links"><a href="https://uri.amap.com/search?keyword=Paris+Gare+du+Nord" target="_blank" rel="noopener">高德</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Paris+Gare+du+Nord" target="_blank" rel="noopener">Google Maps</a><a href="https://maps.apple.com/?q=Paris+Gare+du+Nord" target="_blank" rel="noopener">Apple Maps</a></div>
         <p class="source">来源：user pasted transport details · 置信度：high</p>
       </div>
-    </article>
-    </div>
-        </section>
-        </section>
+    </article></div>
+        </section></section>
   </main>
+  <footer class="site-footer">Generated as a static product roadbook. Verify live schedules before departure.</footer>
 </body>
 </html>
