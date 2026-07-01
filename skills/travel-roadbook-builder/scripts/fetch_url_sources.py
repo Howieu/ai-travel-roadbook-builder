@@ -91,7 +91,11 @@ def build_source(url: str, index: int, captured_at: str, timeout: float = 20) ->
         "confidence": "low",
     }
     if platform == "xhs":
-        base["excerpt"] = "Xiaohongshu URLs require an active Agent Reach Xiaohongshu backend or user-pasted text."
+        base["excerpt"] = (
+            "Xiaohongshu direct reading requires Agent Reach plus an active Xiaohongshu backend. "
+            "Run `agent-reach install --channels opencli`, log into Xiaohongshu in Chrome, rerun doctor, "
+            "or paste the note text/screenshots."
+        )
         return base
     try:
         content = fetch_content(url, timeout)

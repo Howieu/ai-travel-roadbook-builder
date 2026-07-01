@@ -56,7 +56,7 @@ The Louvre needs an advance ticket. Le Marais works well for cafes and shopping.
         self.assertEqual(source["platform"], "xhs")
         self.assertEqual(source["accessStatus"], "unreadable")
         self.assertEqual(source["confidence"], "low")
-        self.assertIn("Xiaohongshu URLs require", source["excerpt"])
+        self.assertIn("agent-reach install --channels opencli", source["excerpt"])
 
 
 if __name__ == "__main__":

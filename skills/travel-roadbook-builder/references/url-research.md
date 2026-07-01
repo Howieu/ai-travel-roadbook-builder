@@ -10,14 +10,14 @@ Run this before URL collection:
 agent-reach doctor --json
 ```
 
-Record the relevant backend status in your working notes. If a platform backend is unavailable, keep the URL as an unread or user-provided source and ask for pasted text or screenshots.
+Record the relevant backend status in your working notes. If a platform backend is unavailable, keep the URL as an unread or user-provided source and follow the platform gate below.
 
 Current routing rules:
 
 - Ordinary webpages: use Agent Reach web routing through Jina Reader.
 - GitHub reference repos: use Agent Reach GitHub routing through `gh`.
 - Xiaohongshu: use the Agent Reach Xiaohongshu backend only when `xiaohongshu.active_backend` is non-null.
-- If Xiaohongshu has no active backend, ask the user to paste the note text or upload screenshots. Do not claim that a note was read.
+- If Xiaohongshu has no active backend, do not continue as if direct reading is possible. Offer setup first; fall back to pasted text or screenshots only if the user declines setup.
 
 ## Ordinary Webpages
 
@@ -45,6 +45,25 @@ When Agent Reach reports an active Xiaohongshu backend, follow its backend-speci
 - xiaohongshu-mcp: search first, then pass both `feed_id` and `xsec_token` to note detail calls.
 - xhs-cli: use only when already available; prefer full URLs from search results.
 
+When the user wants Xiaohongshu links to be read directly, treat an inactive backend as a setup gate:
+
+```text
+我现在有 Agent Reach，但没有可用的小红书后端，所以不能直接读取小红书链接。
+
+方案 A（推荐，桌面）：安装 OpenCLI 后端
+1. 运行：agent-reach install --channels opencli
+2. 打开 Chrome，登录小红书网页版
+3. 重新运行：agent-reach doctor --json
+4. 看到 xiaohongshu.active_backend 不为空后，我再读取链接
+
+方案 B（服务器/无桌面）：配置 xiaohongshu-mcp
+https://github.com/xpzouying/xiaohongshu-mcp
+
+方案 C（不安装）：直接粘贴笔记正文或发截图，我继续生成路书
+```
+
+Do not describe this as "install Agent Reach" when `agent-reach doctor` already runs. The missing piece is the Xiaohongshu backend.
+
 Rules:
 
 - Do not bypass login, captcha, platform rate limits, or xsec_token requirements.
@@ -52,7 +71,7 @@ Rules:
 - Do not read a bare note ID when the platform requires a full URL or token.
 - Space manual reads apart if the backend warns about rate limits.
 
-If the backend is unavailable, ask the user for one of:
+If the backend is unavailable and the user declines setup, ask for one of:
 
 - note text pasted directly;
 - screenshots of the note;
@@ -92,6 +111,12 @@ For sources that cannot be read:
   "accessStatus": "unreadable",
   "confidence": "low"
 }
+```
+
+For unavailable Xiaohongshu links, the `excerpt` should include the setup gate in one sentence, for example:
+
+```text
+Xiaohongshu direct reading requires Agent Reach plus an active Xiaohongshu backend. Run `agent-reach install --channels opencli`, log into Xiaohongshu in Chrome, rerun doctor, or paste the note text/screenshots.
 ```
 
 ## Borrowed Logic From Reference Skills

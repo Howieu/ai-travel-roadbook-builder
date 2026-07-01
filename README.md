@@ -13,7 +13,7 @@
 ## V0.1 工作流
 
 1. 用户提供攻略正文、公开网页链接、小红书链接、酒店截图、航班/高铁/火车/巴士截图。
-2. Agent 先用 Agent Reach 检查可读渠道；普通网页走 Jina Reader，小红书无可用后端时要求用户粘贴正文或截图。
+2. Agent 先用 Agent Reach 检查可读渠道；普通网页走 Jina Reader；小红书直读必须有可用 XHS 后端，没有时先提示安装 OpenCLI 或 xiaohongshu-mcp，再回退到粘贴正文/截图。
 3. Agent 从截图中提取酒店和交通约束，省略乘客姓名、完整订单号、支付信息、证件号、电话和邮箱。
 4. Agent 按 skill 生成带 `sourceRecords` 和 `sourceIds` 的 `roadbook.json`。
 5. 渲染器把 JSON 转成静态 HTML。
@@ -27,7 +27,7 @@ python skills/travel-roadbook-builder/scripts/fetch_url_sources.py \
   --out source-records.json
 ```
 
-输出的 `sources` 可合并进 `roadbook.json` 的 `sourceRecords` 字段。小红书链接只有在 Agent Reach 的 Xiaohongshu 后端可用时才读取；否则会保留为低置信度来源，并要求用户粘贴正文或上传截图。
+输出的 `sources` 可合并进 `roadbook.json` 的 `sourceRecords` 字段。小红书链接只有在 Agent Reach 的 Xiaohongshu 后端可用时才读取；否则会保留为低置信度来源，并提示安装 OpenCLI / xiaohongshu-mcp 或改为粘贴正文、上传截图。
 
 ## 本地生成 demo
 

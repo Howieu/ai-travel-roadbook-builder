@@ -11,7 +11,7 @@ Use this skill to build a travel roadbook from pasted materials, readable public
 
 1. Collect required trip basics: destination, start date, end date, pace, interests, must-go places, and avoid places.
 2. Ask the user for guide notes, public links, hotel screenshots, and transport screenshots. Read `references/input-format.md` for the preferred intake shape.
-3. If the user provides URLs, use the installed `agent-reach` skill and read `references/url-research.md`. Run `agent-reach doctor --json` first, then use the active backend. If a Xiaohongshu backend is unavailable, ask for pasted text or screenshots instead of pretending the link was read.
+3. If the user provides URLs, use the installed `agent-reach` skill and read `references/url-research.md`. Run `agent-reach doctor --json` first, then use the active backend. If the user expects direct Xiaohongshu reading and no Xiaohongshu backend is active, stop URL collection and offer the setup gate from `url-research.md`: install/enable OpenCLI or xiaohongshu-mcp, then rerun doctor. If the user declines setup, ask for pasted text or screenshots instead of pretending the link was read.
 4. If the user provides hotel, flight, train, bus, ferry, or ticket screenshots, read `references/screenshot-bookings.md`, extract only itinerary fields, and omit sensitive identifiers.
 5. Extract places, food stops, shopping areas, transport nodes, opening-hour notes, booking reminders, source records, and risks.
 6. Apply itinerary rules from `references/itinerary-rules.md`.

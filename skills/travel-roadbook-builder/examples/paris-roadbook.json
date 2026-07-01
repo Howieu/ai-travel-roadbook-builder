@@ -38,7 +38,7 @@
       "url": "https://www.xiaohongshu.com/explore/example",
       "title": null,
       "capturedAt": "2026-07-01T00:02:00Z",
-      "excerpt": "Xiaohongshu backend unavailable in this environment; use pasted note text or screenshots instead.",
+      "excerpt": "Xiaohongshu direct reading requires Agent Reach plus an active Xiaohongshu backend. Install OpenCLI with `agent-reach install --channels opencli`, log into Xiaohongshu in Chrome, rerun doctor, or paste note text/screenshots.",
       "accessStatus": "unreadable",
       "confidence": "low"
     },
