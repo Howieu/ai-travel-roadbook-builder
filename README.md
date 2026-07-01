@@ -47,6 +47,14 @@ python -m http.server 8008 --directory docs
 
 打开 `http://localhost:8008/`。
 
+## Skill 更新检测
+
+```bash
+python skills/travel-roadbook-builder/scripts/check_skill_update.py
+```
+
+脚本会比较本地 `SKILL.md` 版本和 GitHub main 版本，只提示是否有更新，不自动覆盖本地 skill。
+
 ## Vercel 部署
 
 这个 repo 已包含 `vercel.json`，Vercel 项目输出目录是 `docs`。导入 GitHub repo 后可直接部署静态站点。

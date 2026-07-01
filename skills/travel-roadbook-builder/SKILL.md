@@ -1,6 +1,9 @@
 ---
 name: travel-roadbook-builder
 description: Generate execution-ready travel roadbooks from travel notes, public guide links, Xiaohongshu/web/Notion/Feishu materials, hotel or transport screenshots, booking text, and user preferences. Use when the user wants a structured roadbook.json and static HTML itinerary with source evidence, day-by-day stops, timing buffers, fallback notes, and Amap/Google Maps/Apple Maps links.
+metadata:
+  version: "0.3.0"
+  update_url: "https://raw.githubusercontent.com/Howieu/ai-travel-roadbook-builder/main/skills/travel-roadbook-builder/SKILL.md"
 ---
 
 # Travel Roadbook Builder
@@ -8,6 +11,14 @@ description: Generate execution-ready travel roadbooks from travel notes, public
 ## Workflow
 
 Use this skill to build a travel roadbook from pasted materials, readable public URLs, and user-provided booking screenshots. Keep the pipeline stable: do not depend on email access, account imports, or live transport APIs.
+
+0. Run the update check once per session:
+
+```bash
+python skills/travel-roadbook-builder/scripts/check_skill_update.py
+```
+
+If it reports `update_available`, tell the user the local skill is stale before continuing. Do not auto-overwrite the installed skill unless the user asks.
 
 1. Collect required trip basics: destination, start date, end date, pace, interests, must-go places, and avoid places.
 2. Ask the user for guide notes, public links, hotel screenshots, and transport screenshots. Read `references/input-format.md` for the preferred intake shape.
