@@ -68,6 +68,15 @@ def validate(data: dict) -> list[str]:
     return errors
 
 
+def source_records(data: dict) -> list[dict]:
+    records = data.get("sourceRecords")
+    if records is None:
+        records = data.get("sources")
+    if not isinstance(records, list):
+        return []
+    return [record for record in records if isinstance(record, dict)]
+
+
 def render_list(items: list[dict], kind: str) -> str:
     if not items:
         return ""
@@ -88,6 +97,31 @@ def render_list(items: list[dict], kind: str) -> str:
         )
     heading = "住宿" if kind == "lodging" else "交通"
     return f'<section class="info-section"><h2>{heading}</h2><div class="info-grid">{"".join(cards)}</div></section>'
+
+
+def render_sources(data: dict) -> str:
+    records = source_records(data)
+    if not records:
+        return ""
+    cards = []
+    for record in records:
+        title = esc(record.get("title") or record.get("url") or record.get("id"), "来源")
+        platform = esc(record.get("platform"), "source")
+        access = esc(record.get("accessStatus"), "unknown")
+        confidence = esc(record.get("confidence"), "unknown")
+        excerpt = esc(record.get("excerpt"))
+        url = esc(record.get("url"))
+        source_id = esc(record.get("id"))
+        link = f'<a href="{url}" target="_blank" rel="noopener">打开来源</a>' if url else ""
+        cards.append(
+            '<article class="source-card">'
+            f"<h3>{title}</h3>"
+            f'<p class="muted">{source_id} · {platform} · {access} · {confidence}</p>'
+            f"{f'<p>{excerpt}</p>' if excerpt else ''}"
+            f"{link}"
+            "</article>"
+        )
+    return f'<section class="info-section source-section"><h2>资料来源</h2><div class="info-grid">{"".join(cards)}</div></section>'
 
 
 def render_stop(stop: dict) -> str:
@@ -176,6 +210,7 @@ def render(data: dict, css_path: str) -> str:
       </div>
       {render_list(data.get("lodging", []), "lodging")}
       {render_list(data.get("transport", []), "transport")}
+      {render_sources(data)}
       {warning_section}
     </aside>
     <section class="days">{days_html}</section>

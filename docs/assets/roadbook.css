@@ -33,6 +33,11 @@ h1{margin:8px 0 10px;font-size:clamp(36px,7vw,72px);line-height:1;letter-spacing
 .info-card:first-child{border-top:0;padding-top:0}
 .info-card h3{margin:0;font-size:15px}
 .info-card p{margin:4px 0}
+.source-card{border-top:1px solid #eee9df;padding-top:10px}
+.source-card:first-child{border-top:0;padding-top:0}
+.source-card h3{margin:0;font-size:14px;line-height:1.35}
+.source-card p{margin:4px 0;font-size:13px;color:var(--muted)}
+.source-card a{display:inline-flex;margin-top:4px;text-decoration:none;color:#173f49;background:#f1f4f4;border:1px solid #d9e4e6;border-radius:8px;padding:5px 8px;font-size:12px;font-weight:800}
 .warnings ul{margin:0;padding-left:20px;color:var(--muted)}
 .days{display:grid;gap:18px}
 .day-card{overflow:hidden}

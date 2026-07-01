@@ -11,7 +11,7 @@
     <div>
       <p class="eyebrow">Travel Roadbook Builder</p>
       <h1>把零散攻略变成可执行网页路书</h1>
-      <p>面向自由行用户的 V0：粘贴攻略、酒店和交通信息，生成结构化 <code>roadbook.json</code>，再渲染成手机上可打开的时间线路书。</p>
+      <p>面向自由行用户的 V0.1：把攻略链接、粘贴笔记、酒店/交通截图整理成带来源证据的 <code>roadbook.json</code>，再渲染成手机上可打开的时间线路书。</p>
     </div>
   </header>
   <main class="landing-grid">
@@ -21,8 +21,12 @@
       <a href="generated/paris-demo.html">打开 Paris Demo</a>
     </section>
     <section class="landing-card">
-      <h2>V0 工作流</h2>
-      <p>用户粘贴资料，Agent 生成 <code>roadbook.json</code>，渲染器输出静态 HTML。V0 不依赖小红书抓取、账号导入或实时交通 API。</p>
+      <h2>V0.1 工作流</h2>
+      <p>普通网页通过 Agent Reach / Jina Reader 转成来源记录；小红书不可读时要求粘贴正文或截图；酒店和交通信息从用户截图里提取为行程约束。</p>
+    </section>
+    <section class="landing-card">
+      <h2>来源证据</h2>
+      <p>路书保留 <code>sourceRecords</code> 和 <code>sourceIds</code>，能区分网页、粘贴笔记、预订截图和不可读链接。</p>
     </section>
     <section class="landing-card">
       <h2>本地生成命令</h2>

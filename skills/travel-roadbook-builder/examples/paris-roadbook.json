@@ -7,13 +7,84 @@
     "pace": "standard",
     "interests": ["museum", "food", "city walk", "photo"]
   },
+  "sourceRecords": [
+    {
+      "id": "guide-001",
+      "type": "pasted-note",
+      "platform": "user-paste",
+      "url": null,
+      "title": "User pasted Paris guide notes",
+      "capturedAt": "2026-07-01T00:00:00Z",
+      "excerpt": "User notes recommend a light arrival walk, Seine cruise, Louvre, Le Marais, Montmartre, and departure buffer.",
+      "accessStatus": "read",
+      "confidence": "medium"
+    },
+    {
+      "id": "web-001",
+      "type": "official",
+      "platform": "web",
+      "url": "https://www.louvre.fr/",
+      "readerUrl": "https://r.jina.ai/https://www.louvre.fr/",
+      "title": "Louvre official website",
+      "capturedAt": "2026-07-01T00:01:00Z",
+      "excerpt": "Official website link kept for ticket and opening-hour confirmation before departure.",
+      "accessStatus": "read",
+      "confidence": "high"
+    },
+    {
+      "id": "xhs-001",
+      "type": "guide",
+      "platform": "xhs",
+      "url": "https://www.xiaohongshu.com/explore/example",
+      "title": null,
+      "capturedAt": "2026-07-01T00:02:00Z",
+      "excerpt": "Xiaohongshu backend unavailable in this environment; use pasted note text or screenshots instead.",
+      "accessStatus": "unreadable",
+      "confidence": "low"
+    },
+    {
+      "id": "shot-hotel-001",
+      "type": "booking-screenshot",
+      "platform": "user-screenshot",
+      "url": null,
+      "title": "Hotel booking screenshot",
+      "capturedAt": "2026-07-01T00:03:00Z",
+      "excerpt": "Hotel name, address, check-in and check-out dates captured. Sensitive booking details omitted.",
+      "accessStatus": "read",
+      "confidence": "high"
+    },
+    {
+      "id": "shot-flight-001",
+      "type": "booking-screenshot",
+      "platform": "user-screenshot",
+      "url": null,
+      "title": "Flight booking screenshot",
+      "capturedAt": "2026-07-01T00:04:00Z",
+      "excerpt": "Arrival flight timing captured. Passenger details and booking reference omitted.",
+      "accessStatus": "read",
+      "confidence": "high"
+    },
+    {
+      "id": "shot-train-001",
+      "type": "booking-screenshot",
+      "platform": "user-screenshot",
+      "url": null,
+      "title": "Train booking screenshot",
+      "capturedAt": "2026-07-01T00:05:00Z",
+      "excerpt": "Departure train timing captured. Passenger details and booking reference omitted.",
+      "accessStatus": "read",
+      "confidence": "high"
+    }
+  ],
   "lodging": [
     {
       "name": "Hotel Saint-Germain Example",
       "address": "Example Street, Paris",
       "checkIn": "2026-05-20",
       "checkOut": "2026-05-22",
-      "notes": "User note says luggage storage is available; confirm before arrival."
+      "notes": "User note says luggage storage is available; confirm before arrival.",
+      "sourceIds": ["shot-hotel-001"],
+      "confidence": "high"
     }
   ],
   "transport": [
@@ -23,7 +94,9 @@
       "to": "Paris CDG",
       "departAt": "2026-05-20 08:00",
       "arriveAt": "2026-05-20 10:30",
-      "notes": "Keep arrival day light and reserve airport-to-city buffer."
+      "notes": "Keep arrival day light and reserve airport-to-city buffer.",
+      "sourceIds": ["shot-flight-001"],
+      "confidence": "high"
     },
     {
       "type": "train",
@@ -31,7 +104,9 @@
       "to": "London St Pancras",
       "departAt": "2026-05-22 18:10",
       "arriveAt": "2026-05-22 19:40",
-      "notes": "Reserve station and security buffer before departure."
+      "notes": "Reserve station and security buffer before departure.",
+      "sourceIds": ["shot-train-001"],
+      "confidence": "high"
     }
   ],
   "days": [
@@ -52,6 +127,7 @@
             "apple": "Hotel Saint-Germain Paris"
           },
           "source": "user pasted hotel details",
+          "sourceIds": ["shot-hotel-001"],
           "confidence": "medium"
         },
         {
@@ -66,6 +142,7 @@
             "apple": "Tuileries Garden Paris"
           },
           "source": "pasted guide",
+          "sourceIds": ["guide-001"],
           "confidence": "medium"
         },
         {
@@ -83,6 +160,7 @@
             "apple": "Seine River Cruise Paris"
           },
           "source": "pasted guide",
+          "sourceIds": ["guide-001"],
           "confidence": "medium"
         }
       ]
@@ -113,6 +191,7 @@
             }
           ],
           "source": "pasted guide",
+          "sourceIds": ["guide-001", "web-001"],
           "confidence": "medium"
         },
         {
@@ -127,6 +206,7 @@
             "apple": "Le Marais Paris"
           },
           "source": "pasted guide",
+          "sourceIds": ["guide-001"],
           "confidence": "medium"
         }
       ]
@@ -148,6 +228,7 @@
             "apple": "Sacre-Coeur Paris"
           },
           "source": "pasted guide",
+          "sourceIds": ["guide-001"],
           "confidence": "medium"
         },
         {
@@ -163,6 +244,7 @@
             "apple": "Montmartre Paris"
           },
           "source": "pasted guide",
+          "sourceIds": ["guide-001"],
           "confidence": "medium"
         },
         {
@@ -179,6 +261,7 @@
             "apple": "Paris Gare du Nord"
           },
           "source": "user pasted transport details",
+          "sourceIds": ["shot-train-001"],
           "confidence": "high"
         }
       ]

@@ -12,13 +12,41 @@ Generate a JSON object with this shape:
     "pace": "standard",
     "interests": ["museum", "food", "city walk"]
   },
+  "sourceRecords": [
+    {
+      "id": "web-001",
+      "type": "guide",
+      "platform": "web",
+      "url": "https://example.com/paris-guide",
+      "readerUrl": "https://r.jina.ai/https://example.com/paris-guide",
+      "title": "Paris First-Time Guide",
+      "author": null,
+      "capturedAt": "2026-07-01T12:00:00Z",
+      "excerpt": "Short evidence excerpt used for itinerary planning.",
+      "accessStatus": "read",
+      "confidence": "medium"
+    },
+    {
+      "id": "shot-flight-001",
+      "type": "booking-screenshot",
+      "platform": "user-screenshot",
+      "url": null,
+      "title": "Flight booking screenshot",
+      "capturedAt": "2026-07-01T12:01:00Z",
+      "excerpt": "Flight time and airports visible. Passenger details omitted.",
+      "accessStatus": "read",
+      "confidence": "high"
+    }
+  ],
   "lodging": [
     {
       "name": "Hotel Example",
       "address": "Example Street, Paris",
       "checkIn": "2026-05-20",
       "checkOut": "2026-05-22",
-      "notes": "Ask whether luggage can be stored before check-in."
+      "notes": "Ask whether luggage can be stored before check-in.",
+      "sourceIds": ["shot-hotel-001"],
+      "confidence": "high"
     }
   ],
   "transport": [
@@ -28,7 +56,9 @@ Generate a JSON object with this shape:
       "to": "Paris CDG",
       "departAt": "2026-05-20 08:00",
       "arriveAt": "2026-05-20 10:30",
-      "notes": "Reserve airport-to-city buffer."
+      "notes": "Reserve airport-to-city buffer.",
+      "sourceIds": ["shot-flight-001"],
+      "confidence": "high"
     }
   ],
   "days": [
@@ -58,6 +88,7 @@ Generate a JSON object with this shape:
             }
           ],
           "source": "pasted guide",
+          "sourceIds": ["web-001"],
           "confidence": "medium"
         }
       ]
@@ -78,3 +109,11 @@ Required fields:
 
 When uncertain, keep the stop but set `confidence` to `low` and add a warning or fallback.
 
+Recommended fields:
+
+- `sourceRecords[]`: top-level source registry for readable links, unreadable links, pasted notes, and screenshot evidence.
+- `lodging[].sourceIds[]`, `transport[].sourceIds[]`, `days[].stops[].sourceIds[]`: stable references to `sourceRecords[].id`.
+- `sourceRecords[].accessStatus`: `read`, `partial`, `unreadable`, or `user-summary`.
+- `sourceRecords[].type`: `guide`, `booking-screenshot`, `pasted-note`, `official`, `map`, or `other`.
+
+Keep old single-string `source` fields for human-readable display, but prefer `sourceIds` for traceability.
