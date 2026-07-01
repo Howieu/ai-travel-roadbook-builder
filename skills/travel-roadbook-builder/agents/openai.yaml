@@ -1,0 +1,4 @@
+interface:
+  display_name: "Travel Roadbook Builder"
+  short_description: "Generate travel roadbooks."
+  default_prompt: "把我的旅行攻略、酒店和交通信息整理成可执行网页路书。"

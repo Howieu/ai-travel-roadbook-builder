@@ -1,0 +1,192 @@
+{
+  "trip": {
+    "title": "Paris 3-Day Roadbook",
+    "destination": "Paris",
+    "startDate": "2026-05-20",
+    "endDate": "2026-05-22",
+    "pace": "standard",
+    "interests": ["museum", "food", "city walk", "photo"]
+  },
+  "lodging": [
+    {
+      "name": "Hotel Saint-Germain Example",
+      "address": "Example Street, Paris",
+      "checkIn": "2026-05-20",
+      "checkOut": "2026-05-22",
+      "notes": "User note says luggage storage is available; confirm before arrival."
+    }
+  ],
+  "transport": [
+    {
+      "type": "flight",
+      "from": "Manchester",
+      "to": "Paris CDG",
+      "departAt": "2026-05-20 08:00",
+      "arriveAt": "2026-05-20 10:30",
+      "notes": "Keep arrival day light and reserve airport-to-city buffer."
+    },
+    {
+      "type": "train",
+      "from": "Paris Gare du Nord",
+      "to": "London St Pancras",
+      "departAt": "2026-05-22 18:10",
+      "arriveAt": "2026-05-22 19:40",
+      "notes": "Reserve station and security buffer before departure."
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-05-20",
+      "title": "Arrival + Seine Evening",
+      "summary": "Keep arrival day light, store luggage, then do a central walk and evening cruise.",
+      "stops": [
+        {
+          "time": "12:30",
+          "name": "Hotel Saint-Germain Example",
+          "type": "lodging",
+          "description": "Drop luggage before check-in if available.",
+          "durationMinutes": 30,
+          "mapQueries": {
+            "amap": "Hotel Saint-Germain Paris",
+            "google": "Hotel Saint-Germain Paris",
+            "apple": "Hotel Saint-Germain Paris"
+          },
+          "source": "user pasted hotel details",
+          "confidence": "medium"
+        },
+        {
+          "time": "14:00",
+          "name": "Tuileries Garden",
+          "type": "city walk",
+          "description": "Light walk after arrival; good route into central Paris.",
+          "durationMinutes": 60,
+          "mapQueries": {
+            "amap": "Tuileries Garden",
+            "google": "Tuileries Garden Paris",
+            "apple": "Tuileries Garden Paris"
+          },
+          "source": "pasted guide",
+          "confidence": "medium"
+        },
+        {
+          "time": "17:30",
+          "name": "Seine Cruise",
+          "type": "photo",
+          "description": "Evening cruise for river views and photos.",
+          "durationMinutes": 90,
+          "mustGo": true,
+          "deadline": "Book or check same-day sailing time before leaving the hotel.",
+          "fallback": "If arrival is delayed, replace cruise with a shorter riverside walk.",
+          "mapQueries": {
+            "amap": "Seine Cruise Paris",
+            "google": "Seine River Cruise Paris",
+            "apple": "Seine River Cruise Paris"
+          },
+          "source": "pasted guide",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "title": "Louvre + Le Marais",
+      "summary": "Museum-first day with a lighter cafe and shopping afternoon.",
+      "stops": [
+        {
+          "time": "09:30",
+          "name": "Louvre Museum",
+          "type": "museum",
+          "description": "Reserve 2-3 hours and book in advance.",
+          "durationMinutes": 180,
+          "mustGo": true,
+          "deadline": "Check ticket entry time before departure.",
+          "fallback": "If tickets are unavailable, swap with Musee d'Orsay or exterior photos.",
+          "mapQueries": {
+            "amap": "Louvre Museum",
+            "google": "Louvre Museum Paris",
+            "apple": "Louvre Museum Paris"
+          },
+          "links": [
+            {
+              "label": "Official site",
+              "url": "https://www.louvre.fr/"
+            }
+          ],
+          "source": "pasted guide",
+          "confidence": "medium"
+        },
+        {
+          "time": "14:30",
+          "name": "Le Marais",
+          "type": "food / shopping",
+          "description": "Cafe break, boutiques, and a relaxed afternoon walk.",
+          "durationMinutes": 150,
+          "mapQueries": {
+            "amap": "Le Marais Paris",
+            "google": "Le Marais Paris",
+            "apple": "Le Marais Paris"
+          },
+          "source": "pasted guide",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "title": "Montmartre + Departure Buffer",
+      "summary": "Short morning route, then keep enough station buffer for Eurostar.",
+      "stops": [
+        {
+          "time": "09:30",
+          "name": "Sacre-Coeur",
+          "type": "photo / viewpoint",
+          "description": "Go in the morning for lighter crowds and city views.",
+          "durationMinutes": 75,
+          "mapQueries": {
+            "amap": "Sacre-Coeur Paris",
+            "google": "Sacre-Coeur Paris",
+            "apple": "Sacre-Coeur Paris"
+          },
+          "source": "pasted guide",
+          "confidence": "medium"
+        },
+        {
+          "time": "11:00",
+          "name": "Montmartre",
+          "type": "city walk",
+          "description": "Short neighborhood walk and lunch before collecting luggage.",
+          "durationMinutes": 120,
+          "mustGo": true,
+          "mapQueries": {
+            "amap": "Montmartre Paris",
+            "google": "Montmartre Paris",
+            "apple": "Montmartre Paris"
+          },
+          "source": "pasted guide",
+          "confidence": "medium"
+        },
+        {
+          "time": "15:45",
+          "name": "Paris Gare du Nord",
+          "type": "transport",
+          "description": "Arrive early for departure buffer.",
+          "durationMinutes": 90,
+          "deadline": "Reach the station by 16:20 at the latest for the 18:10 train.",
+          "fallback": "Skip Montmartre lunch if checkout or luggage pickup runs late.",
+          "mapQueries": {
+            "amap": "Paris Gare du Nord",
+            "google": "Paris Gare du Nord",
+            "apple": "Paris Gare du Nord"
+          },
+          "source": "user pasted transport details",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "Opening hours and transport schedules are not live-verified.",
+    "Confirm Louvre ticket availability before finalizing day 2.",
+    "Departure day is intentionally lighter to reduce train risk."
+  ]
+}
